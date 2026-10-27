@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Library Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="PageTurn home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4.5 5.75c2.8-.9 5.3-.35 7.5 1.15v12c-2.2-1.5-4.7-2.05-7.5-1.15v-12Zm15 0c-2.8-.9-5.3-.35-7.5 1.15v12c2.2-1.5 4.7-2.05 7.5-1.15v-12Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 7v12" stroke="currentColor" stroke-width="1.7"/></svg>
+        </span>
+        <span class="brand-copy"><strong>PageTurn</strong><small>LIBRARY PORTAL</small></span>
+      </a>
+
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#dashboard" data-view="dashboard">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="5" rx="1.5"/><rect x="13.5" y="11.5" width="7" height="9" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link" href="#books" data-view="books">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h11.5A2.5 2.5 0 0 1 19 7v13H7a2 2 0 0 1-2-2V4.5Z"/><path d="M5 17.5A2.5 2.5 0 0 1 7.5 15H19M9 8h6"/></svg>
+          <span>Books</span><span class="nav-count" id="book-nav-count">0</span>
+        </a>
+        <a class="nav-link" href="#members" data-view="members">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5v-1.2A4.3 4.3 0 0 1 7.8 14h2.4a4.3 4.3 0 0 1 4.3 4.3v1.2M16 5.2a3.2 3.2 0 0 1 0 6.2m2.5 2.8a4.2 4.2 0 0 1 2 3.6v1.7"/></svg>
+          <span>Members</span>
+        </a>
+        <a class="nav-link" href="#transactions" data-view="transactions">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h12l-2.8-2.8M17 17H5l2.8 2.8"/><path d="M19 7a7 7 0 0 1 1 3.6M5 17a7 7 0 0 1-1-3.6"/></svg>
+          <span>Transactions</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="singleton-card">
+          <span class="singleton-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 7v5c0 4.2-2.9 7.2-7 8.5C7.9 19.2 5 16.2 5 12V7l7-3.5Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div><strong>Singleton active</strong><small>One library manager</small></div>
+          <span class="online-dot" aria-label="Active"></span>
+        </div>
+        <div class="profile">
+          <div class="avatar">AL</div>
+          <div class="profile-copy"><strong>Alex Library</strong><small>Administrator</small></div>
+          <button class="icon-button profile-menu" type="button" aria-label="Administrator profile">···</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" type="button" id="menu-toggle" aria-label="Toggle navigation">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="breadcrumbs"><span>Workspace</span><span class="crumb-slash">/</span><strong id="breadcrumb-current">Dashboard</strong></div>
+        <div class="topbar-actions">
+          <span class="today-label" id="today-label"></span>
+          <button class="icon-button notification-button" type="button" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></svg>
+            <span class="notification-dot"></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="view-section active" id="view-dashboard" aria-labelledby="page-title">
+          <div class="page-heading dashboard-heading">
+            <div><div class="eyebrow"><span class="eyebrow-dot"></span> LIBRARY OVERVIEW</div><h1 id="page-title">Good day, Alex <span class="wave">✦</span></h1><p>Here’s what’s happening in your library today.</p></div>
+            <button class="button button-primary" type="button" data-action="issue-book">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Issue a book
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon books-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h11.5A2.5 2.5 0 0 1 19 7v13H7a2 2 0 0 1-2-2V4.5Z"/><path d="M5 17.5A2.5 2.5 0 0 1 7.5 15H19M9 8h6"/></svg></span><span class="stat-caption">IN COLLECTION</span><span class="stat-more">···</span></div>
+              <div class="stat-value" id="stat-books">0</div><div class="stat-footer"><span class="stat-dot blue"></span> Total books</div>
+              <div class="stat-decoration decoration-blue"></div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon members-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5v-1.2A4.3 4.3 0 0 1 7.8 14h2.4a4.3 4.3 0 0 1 4.3 4.3v1.2M16 5.2a3.2 3.2 0 0 1 0 6.2m2.5 2.8a4.2 4.2 0 0 1 2 3.6v1.7"/></svg></span><span class="stat-caption">COMMUNITY</span><span class="stat-more">···</span></div>
+              <div class="stat-value" id="stat-members">0</div><div class="stat-footer"><span class="stat-dot green"></span> Registered members</div>
+              <div class="stat-decoration decoration-green"></div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon issued-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h12l-2.8-2.8M17 17H5l2.8 2.8"/><path d="M19 7a7 7 0 0 1 1 3.6M5 17a7 7 0 0 1-1-3.6"/></svg></span><span class="stat-caption">ON LOAN</span><span class="stat-more">···</span></div>
+              <div class="stat-value" id="stat-issued">0</div><div class="stat-footer"><span class="stat-dot orange"></span> Currently issued</div>
+              <div class="stat-decoration decoration-orange"></div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon available-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4L19 7"/></svg></span><span class="stat-caption">READY TO BORROW</span><span class="stat-more">···</span></div>
+              <div class="stat-value" id="stat-available">0</div><div class="stat-footer"><span class="stat-dot purple"></span> Available books</div>
+              <div class="stat-decoration decoration-purple"></div>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="panel recent-panel">
+              <div class="panel-heading"><div><h2>Recent transactions</h2><p>A quick look at the latest library activity.</p></div><a class="text-link" href="#transactions" data-view="transactions">View all <span>→</span></a></div>
+              <div class="table-wrap">
+                <table><thead><tr><th>BOOK</th><th>MEMBER</th><th>DATE</th><th>STATUS</th></tr></thead><tbody id="recent-transactions"></tbody></table>
+              </div>
+            </section>
+            <section class="panel collection-panel">
+              <div class="panel-heading"><div><h2>Collection snapshot</h2><p>Availability across your collection.</p></div><span class="panel-menu">···</span></div>
+              <div class="collection-total"><strong id="collection-total">0</strong><span>books total</span></div>
+              <div class="collection-bar" role="img" aria-label="Available and issued books"><span id="available-bar"></span><span id="issued-bar"></span></div>
+              <div class="legend-row"><span><i class="legend-dot available-legend"></i> Available <strong id="available-legend-count">0</strong></span><span><i class="legend-dot issued-legend"></i> Issued <strong id="issued-legend-count">0</strong></span></div>
+              <div class="collection-note"><span class="note-spark">✦</span><span>Your library is looking good. Keep your collection up to date.</span></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-books" aria-labelledby="books-title">
+          <div class="page-heading">
+            <div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR COLLECTION</div><h1 id="books-title">Books</h1><p>Manage, search, and keep track of your library collection.</p></div>
+            <button class="button button-primary" type="button" data-action="add-book"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add a book</button>
+          </div>
+          <section class="panel list-panel">
+            <div class="list-toolbar"><div><h2>All books <span class="count-pill" id="books-count">0</span></h2><p>Your complete catalog in one place.</p></div><div class="toolbar-controls">
+              <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4 4"/></svg><input id="book-search" type="search" placeholder="Search books..." aria-label="Search books"></label>
+              <select id="book-filter" class="select-control" aria-label="Filter books"><option value="all">All books</option><option value="available">Available</option><option value="issued">Issued</option></select>
+            </div></div>
+            <div class="table-wrap"><table><thead><tr><th>BOOK TITLE</th><th>AUTHOR</th><th>CATEGORY</th><th>ISBN</th><th>STATUS</th><th class="actions-heading">ACTIONS</th></tr></thead><tbody id="books-table"></tbody></table></div>
+            <div class="empty-state hidden" id="books-empty"><span class="empty-icon">⌕</span><strong>No books found</strong><p>Try a different search or add a new book to your collection.</p></div>
+          </section>
+        </section>
+
+        <section class="view-section" id="view-members" aria-labelledby="members-title">
+          <div class="page-heading">
+            <div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR COMMUNITY</div><h1 id="members-title">Members</h1><p>Keep your reader community organized and up to date.</p></div>
+            <button class="button button-primary" type="button" data-action="add-member"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Register member</button>
+          </div>
+          <section class="panel list-panel">
+            <div class="list-toolbar"><div><h2>Registered members <span class="count-pill" id="members-count">0</span></h2><p>People with access to your library.</p></div><div class="toolbar-controls"><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4 4"/></svg><input id="member-search" type="search" placeholder="Search members..." aria-label="Search members"></label></div></div>
+            <div class="table-wrap"><table><thead><tr><th>MEMBER</th><th>EMAIL</th><th>PHONE</th><th>JOINED</th><th>ACTIVE LOANS</th><th class="actions-heading">ACTIONS</th></tr></thead><tbody id="members-table"></tbody></table></div>
+            <div class="empty-state hidden" id="members-empty"><span class="empty-icon">⌕</span><strong>No members found</strong><p>Try a different search or register a new member.</p></div>
+          </section>
+        </section>
+
+        <section class="view-section" id="view-transactions" aria-labelledby="transactions-title">
+          <div class="page-heading">
+            <div><div class="eyebrow"><span class="eyebrow-dot"></span> CIRCULATION DESK</div><h1 id="transactions-title">Transactions</h1><p>Track issued books and returns across your library.</p></div>
+            <button class="button button-primary" type="button" data-action="issue-book"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Issue a book</button>
+          </div>
+          <section class="panel list-panel">
+            <div class="list-toolbar"><div><h2>Loan history <span class="count-pill" id="transactions-count">0</span></h2><p>All book issues and returns.</p></div><div class="toolbar-controls"><select id="transaction-filter" class="select-control" aria-label="Filter transactions"><option value="all">All transactions</option><option value="active">Currently issued</option><option value="returned">Returned</option></select></div></div>
+            <div class="table-wrap"><table><thead><tr><th>BOOK</th><th>MEMBER</th><th>ISSUED ON</th><th>DUE DATE</th><th>STATUS</th><th class="actions-heading">ACTION</th></tr></thead><tbody id="transactions-table"></tbody></table></div>
+            <div class="empty-state hidden" id="transactions-empty"><span class="empty-icon">↔</span><strong>No transactions yet</strong><p>Issue a book to a registered member to get started.</p></div>
+          </section>
+        </section>
+
+        <footer class="page-footer"><span>© <span id="footer-year"></span> PageTurn Library</span><span>Built with care for curious minds <span class="footer-star">✦</span></span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <div class="modal-backdrop hidden" id="modal-backdrop" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header"><div><div class="eyebrow"><span class="eyebrow-dot"></span> LIBRARY PORTAL</div><h2 id="modal-title">Add a book</h2><p id="modal-description">Enter the details below to update your library.</p></div><button class="icon-button modal-close" type="button" id="modal-close" aria-label="Close dialog">×</button></div>
+      <form id="modal-form" novalidate><div id="modal-fields" class="modal-fields"></div><div class="form-error hidden" id="form-error" role="alert"></div><div class="modal-actions"><button class="button button-secondary" type="button" id="modal-cancel">Cancel</button><button class="button button-primary" type="submit" id="modal-submit">Save</button></div></form>
+    </section>
+  </div>
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
